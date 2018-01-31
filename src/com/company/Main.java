@@ -3,19 +3,41 @@ package com.company;
 import java.util.Scanner;
 
 public class Main {
+    public static final int EXIT_CODE = 0;
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Main objektas = new Main();
+
+    }
+
+    public Main() {
+
         float suma = 0;
-        float sk = 0;
+        float skaicius = 0;
         do {
-            System.out.println("iveskite betkoki skaiciu");
-            sk = sc.nextFloat();
-            suma += sk;
-        } while (sk != 0);
+
+            skaicius = duokGarantuotaiSkaiciu();
+            suma += skaicius;
+        } while (skaicius != EXIT_CODE);
         System.out.println("suma yra: " + suma);
 
+    }
 
-        // write your code here
+    public float duokGarantuotaiSkaiciu() {
+        float rezultatas = 0;
+        Scanner sc = new Scanner(System.in);
+        boolean arPavyko = false;
+        while (arPavyko == false) {
+            System.out.println("iveskite betkoki skaiciu");
+            try {
+                rezultatas = sc.nextFloat();
+                arPavyko = true;
+            } catch (Exception klaida) {
+                System.out.println("ivestas tekstas yra ne skaicius");
+                sc.next();
+            }
+        }
+
+        return rezultatas;
     }
 }
